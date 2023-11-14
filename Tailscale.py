@@ -45,3 +45,17 @@
     systemctl start derp #检查连接情况
 }
 
+#隐藏中转服务器
+{
+    curl -fsSL https://tailscale.com/install.sh | sh #下载tailscale
+
+    tailscale up #启动tailscale
+ 
+    nano /etc/systemd/system/derp.service #修改service
+ 
+    --verify-clients #添加参数
+ 
+    systemctl daemon-reload #重新载入服务
+ 
+    systemctl restart derp #重启服务
+}
